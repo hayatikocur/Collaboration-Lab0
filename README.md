@@ -2,5 +2,5 @@
 # This is a group work repository for Lab0.
 - Hayati
 - Yiğit Kaan
-- Mustafa Mert
+- Mustafa Mert:
 inş halledicez

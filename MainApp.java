@@ -29,15 +29,68 @@ public class MainApp {
         return true;
     }
 
-    private static void findMaxAndMin()
+    /**
+     * This method find the max value in array
+     * @return maximum value
+     * @author Hayati Kocur
+     */
+    private static int findMax()
     {
-
+        int max = Integer.MIN_VALUE;
+        for(int number : array)
+        {
+            if(number > max)
+            {
+                max = number;
+            }
+        }
+        return max;
+    }
+    /**
+     * This method find the max value in array
+     * @return minimum value
+     * @author Hayati Kocur
+     */
+    private static int findMin()
+    {
+        int min = Integer.MAX_VALUE;
+        for(int number : array)
+        {
+            if(number < min)
+            {
+                min = number;
+            }
+        }
+        return min;
 
     }
-
+    /**
+     * This method find the average of array 
+     * and calculate the differences of values with average
+     * and show them.
+     * @author Hayati Kocur
+     */
     private static void averageAndDiffs()
     {
 
+        int summ = 0;
+        for(int number : array)
+        {
+            summ += number;
+        }
+
+        double average = (double) summ / array.length;
+
+        System.out.printf("Average of array: %f\n", average);
+
+        System.out.print("Differeces of numbers with average: ");
+        for(int number : array)
+        {
+            System.out.printf("%.1f ", (number - average));
+
+        }
+
+        System.out.println();
     }
 
     /**

@@ -1,8 +1,9 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class MainApp {
 
-    private static int[] array;
+    private static int[] randomArr;
 
     /**
      * This main method creates a random array
@@ -11,32 +12,64 @@ public class MainApp {
      */
     public static void main(String[] args) 
     {
-        int size = 100;
-        int[] randomArr = new int[size];
-
-        Random random = new Random();
-
-        for (int i = 0; i < randomArr.length; i++) {
-            randomArr[i] = random.nextInt(101);
-        }
-
-        boolean done = false;
+        
         Scanner in = new Scanner(System.in);
 
-        while (!done) {
-            System.out.printf("Operation Menu:\n1) Find the array's minimum and maximum\n2) Find the average of the array\n3) Find the sum of elements with odd and even numbered indexed\n4) Exit\n\nPlease enter your operation: ");
+        boolean done = false;
+
+        while(!done)
+        {
+
+            System.out.println("\nMenu:");
+            System.out.println("1. Create an array with random integers");
+            System.out.println("2. Find minimum and maximum in the array");
+            System.out.println("3. Find the average and differences from the average");
+            System.out.println("4. Find the sum of elements at odd- and even-numbered indexes");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
 
             int operation = in.nextInt();
 
-            if (operation == 1) {
-                System.out.println("1");
-            } else if (operation == 2) {
-                System.out.println("2");
-            } else if (operation == 3) {
-                System.out.println("3");
-            } else if (operation == 4) {
+            if(operation == 1) 
+            {
+                createArray(in);
+
+            } 
+            else if(operation == 2) 
+            {
+                if (isInitialized()) 
+                {
+                    System.out.println("Maximum value: " + findMax());
+                    System.out.println("Minimum value: " + findMin());
+                }
+
+            } 
+            else if(operation == 3) 
+            {
+                if (isInitialized()) 
+                {
+                    averageAndDiffs();
+                }
+
+            } 
+            else if(operation == 4) 
+            {
+                if (isInitialized()) 
+                {
+                    sumOfEvenAndOddIndexesOfArray();
+                }
+
+            }
+            else if(operation == 5)
+            {
                 done = true;
-                System.out.println("Exited.");
+                System.out.println("Exited app.");
+
+            }
+            else
+            {
+                System.out.println("Invalid operation. Try again(1-5).");
+                
             }
         }
 
@@ -45,14 +78,32 @@ public class MainApp {
 
     private static void createArray(Scanner in)
     {
+        System.out.print("Enter the array size: ");
+        int size = in.nextInt();
 
+        randomArr = new int[size];
+
+        Random random = new Random();
+
+        for(int i = 0; i < size; i++)
+        {
+            randomArr[i] = random.nextInt(101);
+        }
+
+        System.out.print("Created and randomized array: ");
+        for(int numm : randomArr)
+        {
+            System.out.print(numm + " ");
+        }
+        System.out.println();
     }
 
     private static boolean isInitialized()
     {
-        if(array == null)
+        if(randomArr == null)
         {
             System.out.println("Array didn't created. Create an array before doing an operation.");
+            return false;
         }
 
         return true;
@@ -66,7 +117,7 @@ public class MainApp {
     private static int findMax()
     {
         int max = Integer.MIN_VALUE;
-        for(int number : array)
+        for(int number : randomArr)
         {
             if(number > max)
             {
@@ -83,7 +134,7 @@ public class MainApp {
     private static int findMin()
     {
         int min = Integer.MAX_VALUE;
-        for(int number : array)
+        for(int number : randomArr)
         {
             if(number < min)
             {
@@ -103,17 +154,17 @@ public class MainApp {
     {
 
         int summ = 0;
-        for(int number : array)
+        for(int number : randomArr)
         {
             summ += number;
         }
 
-        double average = (double) summ / array.length;
+        double average = (double) summ / randomArr.length;
 
-        System.out.printf("Average of array: %f\n", average);
+        System.out.println("Average of array: " + average);
 
         System.out.print("Differeces of numbers with average: ");
-        for(int number : array)
+        for(int number : randomArr)
         {
             System.out.printf("%.1f ", (number - average));
 
@@ -129,14 +180,20 @@ public class MainApp {
      *
      * @author Yiğit Kaan Önder
      */
-    private static void sumOfEvenAndOddIndexesOfArray(int[] nums) 
+    private static void sumOfEvenAndOddIndexesOfArray() 
     {
         int sumOfEven = 0;
         int sumOfOdd = 0;
-        for (int i = 0; i < nums.length; i+=2) 
+        for (int i = 0; i < randomArr.length; i++) 
         {
-            sumOfEven += nums[i];
-            sumOfOdd += nums[i + 1];
+            if (i % 2 == 0) 
+            {
+                sumOfEven += randomArr[i];
+            } 
+            else 
+            {
+                sumOfOdd += randomArr[i];
+            }
         }
 
         System.out.println("Sum of odd numbers is: " + sumOfOdd);

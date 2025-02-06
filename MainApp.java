@@ -4,6 +4,11 @@ public class MainApp {
 
     private static int[] array;
 
+    /**
+     * This main method creates a random array
+     * and a menu for different array operations
+     * @author Mustafa Mert Mumcu
+     */
     public static void main(String[] args) 
     {
         int size = 100;

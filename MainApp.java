@@ -6,10 +6,34 @@ public class MainApp {
 
     public static void main(String[] args) 
     {
+        int size = 100;
+        int[] randomArr = new int[size];
+
+        Random random = new Random();
+
+        for (int i = 0; i < randomArr.length; i++) {
+            randomArr[i] = random.nextInt(101);
+        }
+
+        boolean done = false;
         Scanner in = new Scanner(System.in);
-        
 
+        while (!done) {
+            System.out.printf("Operation Menu:\n1) Find the array's minimum and maximum\n2) Find the average of the array\n3) Find the sum of elements with odd and even numbered indexed\n4) Exit\n\nPlease enter your operation: ");
 
+            int operation = in.nextInt();
+
+            if (operation == 1) {
+                System.out.println("1");
+            } else if (operation == 2) {
+                System.out.println("2");
+            } else if (operation == 3) {
+                System.out.println("3");
+            } else if (operation == 4) {
+                done = true;
+                System.out.println("Exited.");
+            }
+        }
 
         in.close();
     }
